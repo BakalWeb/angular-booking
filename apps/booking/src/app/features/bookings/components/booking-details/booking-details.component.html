@@ -1,0 +1,31 @@
+<div class="container">
+  <mat-toolbar>
+    <button mat-raised-button color="secondary" onClick='window.history.back()'>Cancel</button> <!-- Window Back -->
+    <span class="fill"></span>
+    <button mat-raised-button color="primary" *ngIf="editType == 'update'; else create">Save</button>
+    <ng-template #create>
+      <button mat-raised-button color="primary">Create</button>
+    </ng-template>
+  </mat-toolbar>
+  <br />
+
+  <mat-card *ngIf='booking'>
+    <form [formGroup]='formGroup' name="formGroup">
+      <mat-form-field class="full-width">
+        <input matInput class="full-width" placeholder="Created" formControlName="created">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName='bookingDate' [matDatepicker]="bookingDatePicker" placeholder="Choose a date"  [min]="minDate" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #bookingDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+          <input matInput class="full-width" step="60" placeholder="Booking Time" formControlName="bookingTime" type="time" min="9:00" max="18:00">
+        </mat-form-field>
+
+    </form>
+  </mat-card>
+
+</div>

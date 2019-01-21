@@ -1,0 +1,74 @@
+@import 'fonts';
+@import 'palette';
+
+html,
+body {
+  height: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  max-width: 100% !important;
+}
+
+/* Sidebar */
+.mat-drawer-container, .content-wrapper {
+  min-height: 100%;
+}
+.container {
+  padding: 10px;
+}
+
+/* Feature Boxes */
+.feature-box {
+  padding: 20px;
+  -webkit-box-shadow: 4px 7px 17px -3px rgba(0,0,0,0.53);
+-moz-box-shadow: 4px 7px 17px -3px rgba(0,0,0,0.53);
+box-shadow: 4px 7px 17px -3px rgba(0,0,0,0.53);
+border-radius: 3px;
+
+.feature-number {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #a9afbb;
+}
+
+  h2 {
+    margin: -40px auto 10px auto;
+    background: blue; /* highlights missed feature-box-[color] classes */
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 100%;
+
+  }
+}
+.feature-box-red {
+  background: #fff;
+    h2 {
+      background: $primary-red;
+      color: #fff;
+    }
+}
+
+.feature-box-green {
+  background: #fff;
+    h2 {
+      background: $primary-green;
+      color: #fff;
+    }
+}
+
+
+/* Forms and FormFields
+----------------------------------------------------
+====================================================
+----------------------------------------------------
+*/
+
+.full-width {
+  min-width: 100% !important;
+  width: 100%;
+}

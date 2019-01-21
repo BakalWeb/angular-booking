@@ -1,0 +1,76 @@
+<div class="container" fxLayout fxLayoutAlign="start start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div fxFlex="50%" fxFlexOffset="1%" class="feature-box feature-box-green">
+    <h2>Total Bookings</h2>
+    <p class="feature-number">{{ bookings.length }}</p>
+  </div>
+
+  <div fxFlex="50%" fxFlexOffset="1%" class="feature-box feature-box-red">
+    <h2>Todays Bookings</h2>
+    <p class="feature-number">
+ {{ bookingsMadeToday }}
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Bookings</mat-card-title>
+      <mat-card-subtitle>Latest Bookings</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-table #table [dataSource]="datasource" matSort>
+
+        <ng-container cdkColumnDef="id">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header> ID </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="created">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header> Created </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{row.created | date: 'yyyy-MM-dd hh:mm:ss'}} </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="bookingDate">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header> Booking Date </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{row.bookingDate | date: 'yyyy-MM-dd'}} </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="bookingTime">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header> Booking Time </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{row.bookingTime | date: 'HH:mm:ss'}} </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="bookingLength">
+            <mat-header-cell *cdkHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+            <mat-cell *cdkCellDef="let row"> {{row.bookingLength}} </mat-cell>
+          </ng-container>
+
+        <ng-container cdkColumnDef="createdBy">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header> Booked By </mat-header-cell>
+          <mat-cell *cdkCellDef="let row"> {{row.createdBy}} </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="edit">
+          <mat-header-cell *cdkHeaderCellDef> </mat-header-cell>
+          <mat-cell *cdkCellDef="let row">
+            <button mat-stroked-button [routerLink]="[row.id]" aria-label="Edit booking" *ngIf="row.status === 'submitted'; else locked">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <ng-template #locked>
+                <mat-icon >locked</mat-icon></ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
